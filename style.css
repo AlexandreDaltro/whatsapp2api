@@ -1,0 +1,48 @@
+#div_form_container {
+    border: 1px solid #aca;
+    background-color: #fefeff;
+    font-weight: 600;
+}
+
+ div#div_form_container > button {
+    background-color: #DED;
+    padding: 10px 10px 10px 5px;
+    margin: 2px;
+    text-align: left;
+    width: 45%;
+    font-weight: 700;
+    border: 1px solid #353;
+    border-radius: 3px;
+    color: #444444;
+}
+
+
+div#div_form_container > button:hover {
+    background-color: #008069;
+    color: white;
+}
+
+.add_input_button{
+    border-radius: 15px;
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    padding: 8px 0px 0px 1px;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 31px;
+    line-height: 0px;
+    display: flex;
+    margin: 5px auto;
+}
+
+.extension_form_input{
+    display: block;
+    width: 90%;
+    height: 25px;
+    font-size: medium;
+    margin: 3px 0px 6px;
+    background-color: #efefefcf;
+    border: 1px solid #DDD;
+    padding: 2px 4px;
+}

@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+    "version": "0.0.1",
+    "name": "Whatsapp2Api",
+    "description": "Sends chosen contacts and messages to your freshsales, via an integromat workflow.",
+    "author": "Alexandre Daltro",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "storage"
+    ],
+    "background": {
+        "page": "bg.html",
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://web.whatsapp.com/*"
+            ],
+            "css": [
+                "style.css"
+            ],
+            "js": [
+                "index.js"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_title": "Whatsapp2Api",
+        "default_popup": "popup.html"
+    }
+}

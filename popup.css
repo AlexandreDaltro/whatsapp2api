@@ -1,0 +1,112 @@
+h1 {
+    text-align: center;
+    margin: -8px -8px;
+    background-color: #409d89;
+    display: block;
+    height: 40px;
+    line-height: 36px;
+    color: white;
+}
+input{
+    display: block;
+    border-radius: 5px;
+    width: 90%;
+    height: 25px;
+    font-size: medium;
+    margin: 3px 0px 6px;
+    background-color: #efefefcf;
+    border: 1px solid #DDD;
+    padding: 2px 4px;
+}
+
+select{
+    display: block;
+    border-radius: 5px;
+    width: 90%;
+    height: 31px;
+    font-size: medium;
+    background-color: #efefefcf;
+    border: 1px solid #DDD;
+    padding: 2px 4px;
+}
+
+button {
+    background-color: #DED;
+    padding: 10px 10px 10px 5px;
+    margin: 2px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid #353;
+    border-radius: 3px;
+    color: #444444;
+}
+
+.button_submit{
+    min-width: 70px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #008069;
+    color: white;
+}
+
+button:active {
+    background-color: #003780;
+    color: white;
+}
+
+.add_input_button {
+    border-radius: 15px;
+    width: 25px;
+    height: 26px;
+    padding: 13px 0px 0px 3px;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 31px;
+    line-height: 0px;
+    display: flex;
+    margin: 5px auto;
+}
+
+#remove_input{
+    background-color: rgb(233, 163, 163);
+    border: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    padding: 7px 0px 2px 4px;
+}
+
+.extension_form_input {
+    display: block;
+    width: 90%;
+    height: 25px;
+    font-size: medium;
+    margin: 3px 0px 6px;
+    background-color: #efefefcf;
+    border: 1px solid #DDD;
+    padding: 2px 4px;
+}
+
+body {
+    width: 400px;
+}
+
+.table {
+    display: table;
+    width: 100%;
+}
+
+.table>div {
+    display: table-row;
+}
+
+.table>div>div {
+    display: table-cell;
+    width: 33%;
+}
+
+.th{
+    display: table-header-group;
+}
