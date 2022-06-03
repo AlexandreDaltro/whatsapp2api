@@ -1,18 +1,14 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "version": "0.0.1",
     "name": "Whatsapp2Api",
-    "description": "Sends chosen contacts and messages to your freshsales, via an integromat workflow.",
-    "author": "Alexandre Daltro",
+    "description": "Sends chosen messages and contact data from Whatsapp Web to an API/Webhook.",
+    "author": "Alexandre Daltro. Email: contato@alexandredaltro.com.br",
     "permissions": [
         "activeTab",
         "tabs",
         "storage"
     ],
-    "background": {
-        "page": "bg.html",
-        "persistent": false
-    },
     "content_scripts": [
         {
             "matches": [
@@ -26,8 +22,8 @@
             ]
         }
     ],
-    "browser_action": {
-        "default_title": "Whatsapp2Api",
+    "action": {
+        "default_title": "Whatsapp to Freshsales",
         "default_popup": "popup.html"
     }
 }
