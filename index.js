@@ -3,6 +3,7 @@
 //Creator: Alexandre de Almeida Daltro
 //Contact: contato@alexandredaltro.com.br
 //Linha de teste do github
+//Comentário na mesma linha
 
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => { //Receives listener from web.whataspp
