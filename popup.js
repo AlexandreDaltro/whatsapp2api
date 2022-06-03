@@ -1,5 +1,9 @@
 "use strict"
 
+//Code protected by Copyright
+//Creator: Alexandre de Almeida Daltro
+//Contact: contato@alexandredaltro.com.br
+
 const divTable = document.querySelector('div.table'); //It is setted, so that we can add the rows inside it
 const divButtonAddNewInput = document.querySelector('button#add_input'); //Green ball button
 const buttonSave = document.querySelector('button#button_save');
