@@ -1,8 +1,8 @@
 "use strict"
+
 //Code protected by Copyright
 //Creator: Alexandre de Almeida Daltro
 //Contact: contato@alexandredaltro.com.br
-//Comentário na mesma linha
 
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => { //Receives listener from web.whataspp
