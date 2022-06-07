@@ -2,10 +2,9 @@
     "manifest_version": 3,
     "version": "0.0.1",
     "name": "Whatsapp2Api",
-    "description": "Sends chosen messages and contact data from Whatsapp Web to an API/Webhook.",
+    "description": "Sends chosen messages and contact data from Whatsapp Web to an API/Webhook link.",
     "author": "Alexandre Daltro. Email: contato@alexandredaltro.com.br",
     "permissions": [
-        "activeTab",
         "tabs",
         "storage"
     ],
@@ -23,7 +22,8 @@
         }
     ],
     "action": {
-        "default_title": "Whatsapp to Freshsales",
+        "default_title": "Whatsapp2API",
         "default_popup": "popup.html"
     }
+
 }
