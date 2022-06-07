@@ -5,7 +5,7 @@
     "description": "Sends chosen messages and contact data from Whatsapp Web to an API/Webhook link.",
     "author": "Alexandre Daltro. Email: contato@alexandredaltro.com.br",
     "permissions": [
-        "activeTab",
+        "tabs",
         "storage"
     ],
     "icons": {
