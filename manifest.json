@@ -22,7 +22,7 @@
         }
     ],
     "action": {
-        "default_title": "Whatsapp to Freshsales",
+        "default_title": "Whatsapp2API",
         "default_popup": "popup.html"
     }
 }
