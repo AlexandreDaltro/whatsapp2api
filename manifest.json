@@ -8,6 +8,11 @@
         "activeTab",
         "storage"
     ],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+       "128": "icon128.png" 
+    },
     "content_scripts": [
         {
             "matches": [
@@ -25,4 +30,5 @@
         "default_title": "Whatsapp2API",
         "default_popup": "popup.html"
     }
+
 }
