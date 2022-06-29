@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "version": "0.0.1",
+    "version": "0.0.2",
     "name": "Whatsapp2Api",
     "description": "Sends chosen messages and contact data from Whatsapp Web to an API/Webhook link.",
     "author": "Alexandre Daltro. Email: contato@alexandredaltro.com.br",

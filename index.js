@@ -5,16 +5,28 @@
 //Contact: contato@alexandredaltro.com.br
 
 
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => { //Receives listener from web.whataspp
+/*chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => { //Receives listener from web.whataspp
     console.log('Message received from click')
     if (msg.command == 'initReading') {
         alert('Message received from click in the popup')
     }
-})
+})*/
 
 document.addEventListener('click', setListeners)
 
-
+//Trys to get the selectors from the Json online, No success by now
+/*fetch('http://estudiozarez.com.br/selectors.txt', {
+    //mode: "no-cors",
+    method: 'GET',
+    //headers: {
+    //    "Content-Type": "application/json",
+    //    "Accept": "application/json"
+    //}
+})
+    //.then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err))
+*/
 
 function setListeners() {
     console.log(`click`)
@@ -139,7 +151,7 @@ function sendData() {
     console.log(selectedMessages)
 
     let webhookLink = allInputs[0].value; //First Input by default.
-    console.log('webhook Link: '+webhookLink);
+    console.log('webhook Link: ' + webhookLink);
     handleWebhookJson(webhookLink, jsonBodyData)
 
 }
@@ -161,19 +173,18 @@ function getDataFromDOM() {
 
     setTimeout(() => {
         /////////////////Get the data from the DOM
-        let divData1 = document.querySelector('h2 > span.l7jjieqr.cw3vfol9.i0jNr.selectable-text.copyable-text'); //data 1 in the right menu (Contact Name or Tel)
-        let divData2 = document.querySelector('section > div._2P1rL._1is6W.ZIBLv.RVTrW > div.p357zi0d.ktfrpxia.nu7pwgvd.fhf7t426.f8m0rgwh.gndfcl4n > div > span > span'); //data 2 in the right menu (Contact Name or Tel)
+        let divData1 = document.querySelector('section > div > div > h2'); //data 1 in the right menu (Contact Name or Tel)
+        let divData2 = document.querySelector('section > div > div > div > span > span'); //data 2 in the right menu (Contact Name or Tel)
         let divData3 = document.querySelector('#app > div > div > div._3ArsE > div.ldL67._1bLj8 > span > div > span > div > div > section > div > div.gx1rr48f.Wt3HP > div > div > span > span'); //data 3 in the right menu (Tel) (Business)
-        let divData4 = document.querySelector('#app > div > div > div._3ArsE > div.ldL67._1bLj8 > span > div > span > div > div > section > div._2P1rL._1is6W.ZIBLv._1zkaQ._3uJPJ > div._25luK > div.IbzNe > div._9q4U3 > span'); //data 4 in the right menu (Name) (Business)
+        let divData4 = document.querySelector('section > div > div > div > div > span'); //data 4 in the right menu (Name) (Business)
         let messages = document.querySelectorAll('#main > div._2gzeB > div > div._33LGR > div._3K4-L > div'); //all messages
 
         let regex = new Object();
-        regex['tel'] = /^[+][0-9]{2}[ ][0-9]{2,3}[ ][0-9]{4,5}[-][0-9]{4,5}$/;
+        regex['tel'] = /^[+][0-9]{1,3}[- 0-9]{2,15}$/;
         regex['email'] = /[A-z-_.0-9]+[@][A-z.-_0-9]+/;
         regex['company'] = /(?<=Site\/Instagram\sda\sempresa:\s).*/;
         regex['photos_quantity'] = /(?<=Quantidade\sde\sfotos\sdesejada\sno\stotal:)[ 0-9]+/
         regex['product_types'] = /(?<=Tipos\sde\sProdutos:).*/
-
 
         let tel;
         let clientName;
@@ -183,11 +194,14 @@ function getDataFromDOM() {
         if (regex['tel'].test(divData1?.innerText)) { //check if the Phone Number is in the divData1
             tel = divData1.innerText;
             clientName = firstNameLastName(divData2?.innerText);
+            console.log('DivData1')
 
         } else if (regex['tel'].test(divData2?.innerText)) { //or in the divData2
             tel = divData2?.innerText;
             clientName = firstNameLastName(divData1?.innerText)
+            console.log('DivData2')
         } else { // Or in the divData3
+            console.log('DivData3')
             tel = divData3?.innerText;
             clientName = firstNameLastName(divData4?.innerText)
             console.log(divData1?.innerText);
@@ -198,22 +212,23 @@ function getDataFromDOM() {
         ////////////////Defines where to insert the Div with the HTML, depending on the page (Personal, business...)
         let divToAddFormBellow;
         if (!isBusinessAccount) { //If not Business Account, gets a Div to insert adjacent
-            divToAddFormBellow = document.querySelector('#app > div > div > div._3ArsE > div.ldL67._1bLj8 > span > div > span > div > div > section > div._2P1rL._1is6W.ZIBLv.RVTrW > div._1Nfyf');
+            divToAddFormBellow = document.querySelector('section > div');
         }
         else { //If IS Business Account, gets another Div to insert adjacent
-            divToAddFormBellow = document.querySelector('section > div._2P1rL._1is6W.ZIBLv._2FcG4');
+            divToAddFormBellow = document.querySelector('section > div');
         }
         //------------- 
 
         //Gets the main data from DOM
         firstName = clientName[0];
-        lastName = clientName[1];
+        lastName = clientName[1] ? clientName[1] : '';
         tel = tel.replace(/[\s-\.]/g, '');//Cleans spaces and hifens from the telephone
 
 
         //Gets the data in the messages, via regex 
         messages.forEach(msg => { //for Each Message
             for (let i in regex) { //For each var declared in regex['regex']
+                clientData[[i]] = '';
                 if (msg.innerText.match(regex[i])) { //Searches for the regex value match, in the current message
                     clientData[[i]] = msg.innerText.match(regex[i])[0]; //adds the data found to an object
                 }
@@ -235,7 +250,7 @@ function getDataFromDOM() {
             innerFormHTML += `<span>First name</span><input id="first_name" type="text" class="extension_form_input" value="${firstName}"/>`
             innerFormHTML += `<span>Last name</span><input id="last_name" type="text" class="extension_form_input" value="${lastName}"/>`
             innerFormHTML += `<span>Cellphone</span><input id="tel" type="text" class="extension_form_input" value="${tel}"/>`
-            
+
 
             for (let row in savedData.rows) { //Iterates each row in savedData.rows, and Saves the HTML to the var to be inserted
 
@@ -251,7 +266,6 @@ function getDataFromDOM() {
                 //HTML to be pushed to show the new row
                 console.log('para cada row: ' + rowLabel)
                 innerFormHTML += `<span>${rowLabel}</span><input id="${rowId}" type="${rowType}" class="extension_form_input" value="${rowValue}"/>`
-                console.log(innerFormHTML)
             }
             innerFormHTML += '<button id="select_messages" class="extension_form_button">Select Messages</button>'
             innerFormHTML += '<button id="send_data" class="extension_form_button">Send Data</button>'
@@ -267,7 +281,10 @@ function getDataFromDOM() {
                 console.log('div_form_container Reloaded');
 
             } else { //if not, insert the whole conteiner HTML adjacent to the divToAddFormBellow
-                divToAddFormBellow.insertAdjacentHTML('afterend', conteinerFormHTML);
+                setTimeout(() => {
+                    divToAddFormBellow.insertAdjacentHTML('afterend', conteinerFormHTML);
+                }, 500)
+
             }
 
         });
